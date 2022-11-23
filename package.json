@@ -2,7 +2,7 @@
     "private": true,
     "name": "localdb",
     "version": "0.1.0",
-    "description": "Localdb works like a database but stores all data in a local json file.",
+    "description": "Store data locally in a json file.",
     "main": "build/index.js",
     "scripts": {
         "start": "node build/index.js",
@@ -10,7 +10,7 @@
         "build:dev": "tsc -w",
         "start:dev": "nodemon build/index.js"
     },
-    "author": "YisusCoding",
+    "author": "YisusGaming",
     "license": "CC-BY-NC-ND-4.0",
     "devDependencies": {
         "@types/node": "^18.11.9",
