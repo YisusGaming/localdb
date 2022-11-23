@@ -3,7 +3,8 @@ import fs from 'fs';
 import { IObject } from './models/Object.js';
 import { storePath } from './configs.js';
 
-export function Write(properties: Object, includeTimeStamps?: boolean) {
+
+export function Write(properties: Object, includeTimeStamps?: boolean) : IObject {
     const rawStore = fs.readFileSync(storePath, { encoding: 'utf-8' });
     const store = JSON.parse(rawStore) as Array<IObject>;
 
@@ -14,6 +15,18 @@ export function Write(properties: Object, includeTimeStamps?: boolean) {
     if (includeTimeStamps) object.createdAt = Date.now().toString();
     store.push(object);
     fs.writeFileSync(storePath, JSON.stringify(store, null, 4), { encoding: 'utf-8' });
+
+    return object;
+}
+
+export function FindById(id: number) : IObject | undefined {
+    const rawStore = fs.readFileSync(storePath, { encoding: 'utf-8' });
+    const store = JSON.parse(rawStore) as Array<IObject>;
+
+    for (let i = 0; i < store.length; i++) {
+        const object = store[i];
+        if (object._id == id) return object;
+    }
 }
 
 /**
