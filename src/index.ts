@@ -49,6 +49,31 @@ export function FindAll() : Array<IObject> {
 }
 
 /**
+ * Deletes an object based on its id.
+ * If the element is not in the store, the store is not affected.
+ * @param {number} id
+ * @returns {IObject?} Returns the deleted object or undefined if no object was found.
+ */
+export function DeleteById(id: number) : IObject | undefined {
+    const rawStore = fs.readFileSync(storePath, { encoding: 'utf-8' });
+    const store = JSON.parse(rawStore) as Array<IObject>;
+
+    const newStore : Array<IObject> = [];
+    let deleted : IObject;
+
+    store.forEach((object) => {
+        if (object._id != id) {
+            newStore.push(object);
+        } else {
+            deleted = object;
+        }
+    });
+
+    fs.writeFileSync(storePath, JSON.stringify(newStore, null, 4), { encoding: 'utf-8' });
+    return deleted!;
+}
+
+/**
  * Returns the next id avaliable
  */
 function nextId() : number {
