@@ -7,9 +7,9 @@ import { storePath } from './configs.js';
  * Writes an object to the store.
  * @param {Object} properties A **javascript object** with all the custom properties.
  * @param {boolean} [includeTimeStamps] Should the object have a createdAt property?
- * @returns {IObject}
+ * @returns {number} The obeject's store id.
  */
-export function Write(properties: Object, includeTimeStamps?: boolean) : IObject {
+export function Write(properties: Object, includeTimeStamps?: boolean) : number {
     const rawStore = fs.readFileSync(storePath, { encoding: 'utf-8' });
     const store = JSON.parse(rawStore) as Array<IObject>;
 
@@ -21,7 +21,7 @@ export function Write(properties: Object, includeTimeStamps?: boolean) : IObject
     store.push(object);
     fs.writeFileSync(storePath, JSON.stringify(store, null, 4), { encoding: 'utf-8' });
 
-    return object;
+    return object._id;
 }
 
 /**
