@@ -40,6 +40,15 @@ export function FindById(id: number) : IObject | undefined {
 }
 
 /**
+ * Returns all the stored objects.
+ * @returns {Array<IObject>}
+ */
+export function FindAll() : Array<IObject> {
+    const rawStore = fs.readFileSync(storePath, { encoding: 'utf-8' });
+    return JSON.parse(rawStore) as Array<IObject>;
+}
+
+/**
  * Returns the next id avaliable
  */
 function nextId() : number {
