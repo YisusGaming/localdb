@@ -17,7 +17,7 @@ export function Write(properties: Object, includeTimeStamps?: boolean) : number 
         _id: nextId(),
         ...properties
     }
-    if (includeTimeStamps) object.createdAt = Date.now().toString();
+    if (includeTimeStamps) object.createdAt = new Date(Date.now()).toLocaleDateString();
     store.push(object);
     fs.writeFileSync(storePath, JSON.stringify(store, null, 4), { encoding: 'utf-8' });
 
