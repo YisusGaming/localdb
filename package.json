@@ -15,5 +15,12 @@
     "devDependencies": {
         "@types/node": "^18.11.9",
         "nodemon": "^2.0.20"
-    }
+    },
+    "repository": {
+        "url": "https://github.com/YisusGaming/localdb"
+    },
+    "bugs": {
+        "url": "https://github.com/YisusGaming/localdb/issues"
+    },
+    "homepage": "https://github.com/YisusGaming/localdb#readme"
 }
