@@ -3,7 +3,12 @@ import fs from 'fs';
 import { IObject } from './models/Object.js';
 import { storePath } from './configs.js';
 
-
+/**
+ * Writes an object to the store.
+ * @param {Object} properties A **javascript object** with all the custom properties.
+ * @param {boolean} [includeTimeStamps] Should the object have a createdAt property?
+ * @returns {IObject}
+ */
 export function Write(properties: Object, includeTimeStamps?: boolean) : IObject {
     const rawStore = fs.readFileSync(storePath, { encoding: 'utf-8' });
     const store = JSON.parse(rawStore) as Array<IObject>;
@@ -19,6 +24,11 @@ export function Write(properties: Object, includeTimeStamps?: boolean) : IObject
     return object;
 }
 
+/**
+ * Find's an object based on it's id.
+ * @param {number} id
+ * @returns {IObject?}
+ */
 export function FindById(id: number) : IObject | undefined {
     const rawStore = fs.readFileSync(storePath, { encoding: 'utf-8' });
     const store = JSON.parse(rawStore) as Array<IObject>;
